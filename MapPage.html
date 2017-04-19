@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Home</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <form id="Map">
+
+        <!---Navigation-Bar--->
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#"> <span><img alt="Logo" src="Final-Resources/KiMo Logo.png" height="30" /></span> </a>
+                </div>
+
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="active"><a href="MapPage.html">Map</a></li>
+                        <li><a href="LogInPage.html">Log Out</a></li>
+                        <li><a href="MyKidsPage.html">My Kids</a></li>
+                        
+                    </ul>
+                </div>
+
+            </div>
+        </div> 
+        </form><br />
+        <br /> <br /><br />
+
+    <div class="container col-lg-offset-0">
+        <div class="row">
+            <div style="background:#D5F2F7 !important" class="col-sm-2">
+                <h3> Coloana</h3>
+                <p>to make you feel my love. </p>
+                <p> in other words please be true</p>
+            </div>
+            <div class="col-sm-10 col-lg-push-1">
+                <div id="googleMap"  style="width:70%;height:500px;"></div>
+
+                <script>
+                    function myMap() {
+
+
+                        var mapCanvas = document.getElementById("googleMap");
+                        var myCenter = new google.maps.LatLng(48.943740, 5.7771445);
+                        var mapOptions = { center: myCenter, zoom: 10 };
+                        var map = new google.maps.Map(mapCanvas, mapOptions);
+                        var marker = new google.maps.Marker({
+                            position: myCenter,
+                            icon: "drg.png",
+                            animation: google.maps.Animation.BOUNCE
+                        });
+                        marker.setMap(map);
+                        var infowindow = new google.maps.InfoWindow({
+                            content: "Dragos"
+                        });
+
+                        google.maps.event.addListener(marker, 'click', function () {
+                            infowindow.open(map, marker);
+                        });
+
+
+                        var myCenter1 = new google.maps.LatLng(48.843740, 5.7771445);
+                        var marker1 = new google.maps.Marker({
+                            position: myCenter1,
+                            icon: "and.png",
+                            animation: google.maps.Animation.BOUNCE
+                        });
+                        marker1.setMap(map);
+
+                        var infowindow1 = new google.maps.InfoWindow({
+                            content: "Andreea"
+                        });
+
+                        google.maps.event.addListener(marker1, 'click', function () {
+                            infowindow1.open(map, marker1);
+                        });
+
+                        var myCenter2 = new google.maps.LatLng(48.803740, 5.6771445);
+                        var marker2 = new google.maps.Marker({
+                            position: myCenter2,
+                            icon: "Simo.png",
+                            animation: google.maps.Animation.BOUNCE
+                        });
+                        marker2.setMap(map);
+
+                        var infowindow2 = new google.maps.InfoWindow({
+                            content: "Simona"
+                        });
+
+                        google.maps.event.addListener(marker2, 'click', function () {
+                            infowindow2.open(map, marker2);
+                        });
+
+
+                        var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+                        google.maps.event.addDomListener(window, "resize", function () {
+                            var center = map.getCenter();
+                            google.maps.event.trigger(map, "resize");
+                            map.setCenter(center);
+                        });
+
+                    }
+                </script>
+
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRNhZC1QXdUNlgd5WSlrLWV5XIEK39zvw&callback=myMap"></script>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
