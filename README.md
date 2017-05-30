@@ -1,2 +1,0 @@
-# KiMo
-Proiect Web KiMo
