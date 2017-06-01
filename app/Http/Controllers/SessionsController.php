@@ -13,7 +13,7 @@ class SessionsController extends Controller
     //
     public function __construct()
     {
-        $this->middleware('guest',['except'=>['destroy','index','profile','addkid','addgroup','updateProfile']]);
+        $this->middleware('guest',['except'=>['destroy','index','profile','addkid','addgroup','updateProfile','maps']]);
     }
 
     public function create()
@@ -179,5 +179,12 @@ class SessionsController extends Controller
 
         }
     }
+
+    public function maps()
+    {
+        return view('sessions.maps');
+    }
+
+
 
 }
