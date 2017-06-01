@@ -1,4 +1,4 @@
-@extends('layouts.masterlogged')
+@extends('layouts.masterloggedprofile')
 
 @section('content')
 
@@ -16,9 +16,11 @@
                     <!-- END SIDEBAR USERPIC -->
                     <!-- SIDEBAR USER TITLE -->
                     <div class="profile-usertitle">
+                        @foreach($user as $userProfile)
                         <div class="profile-usertitle-name">
-                            {{ auth()->user()->name }}
+                            {{ $userProfile->name }}
                         </div>
+                        @endforeach
                         <div class="profile-usertitle-job">
                             User
                         </div>
@@ -73,12 +75,12 @@
 
 
                                         <div class="panel-body">
-
+                          @foreach($user as $userProfile)
                                             <div class="form-group">
                                                 <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                             </span>
-                                                    <input name="userName" type="text" class="form-control" placeholder="Name" value="{{ \Illuminate\Support\Facades\Auth::user()->name }}"/>
+                                                    <input name="userName" type="text" class="form-control" placeholder="Name" value="{{ $userProfile->name }}"/>
                                                 </div>
                                             </div>
 
@@ -86,7 +88,7 @@
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-                                                    <input name="userEmail" type="text" class="form-control" placeholder="Email" value="{{ \Illuminate\Support\Facades\Auth::user()->email }}"/>
+                                                    <input name="userEmail" type="text" class="form-control" placeholder="Email" value="{{ $userProfile->email }}"/>
                                                 </div>
                                             </div>
 
@@ -107,14 +109,14 @@
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span></span>
-                                                    <input name="userAddress" type="text" class="form-control" placeholder="Address" value="{{ \Illuminate\Support\Facades\Auth::user()->address }}"/>
+                                                    <input name="userAddress" type="text" class="form-control" placeholder="Address" value="{{ $userProfile->address }}"/>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                                    <input name="userAge" type="text" class="form-control" placeholder="Age" value="{{ \Illuminate\Support\Facades\Auth::user()->age }}"/>
+                                                    <input name="userAge" type="text" class="form-control" placeholder="Age" value="{{ $userProfile->age }}"/>
                                                 </div>
                                             </div>
 
@@ -127,7 +129,7 @@
                                             </div>
 
                                         </div>
-
+                                @endforeach
                                     </div>
                                 </div>
                             </div>

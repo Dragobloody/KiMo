@@ -135,7 +135,11 @@ class SessionsController extends Controller
 
     public function profile()
     {
-        return view('sessions.profile');
+        $user=DB::table('users')
+            ->where('users.id',Auth::user()->id)
+            ->select('users.name','users.email','users.address','users.age')
+            ->get();
+        return view('sessions.profile')->with('user',$user);
     }
 
     public function updateProfile()
@@ -163,13 +167,13 @@ class SessionsController extends Controller
                 DB::table('users')
                     ->where('id',$userID )
                     ->update(['name'=>$userName,'email'=>$userEmail,'address'=>$userAddress,'age'=>$userAge,'password'=>$password]);
-                return view('sessions.profile');
+                return $this->profile();
             }
             else{
                 DB::table('users')
                     ->where('id',$userID )
                     ->update(['name'=>$userName,'email'=>$userEmail,'address'=>$userAddress,'age'=>$userAge]);
-                return view('sessions.profile');
+                return $this->profile();
             }
 
 
