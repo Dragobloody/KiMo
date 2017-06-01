@@ -13,7 +13,7 @@ class SessionsController extends Controller
     //
     public function __construct()
     {
-        $this->middleware('guest',['except'=>['destroy','index','profile','addkid','addgroup']]);
+        $this->middleware('guest',['except'=>['destroy','index','profile','addkid','addgroup','updateProfile']]);
     }
 
     public function create()
@@ -136,6 +136,44 @@ class SessionsController extends Controller
     public function profile()
     {
         return view('sessions.profile');
+    }
+
+    public function updateProfile()
+    {
+        $userID=Auth::user()->id;
+        $userName=Input::get('userName');
+        $userEmail=Input::get('userEmail');
+        $userNewPassword=Input::get('userNewPassword');
+        $userNewPasswordConfirm=Input::get('userNewPasswordConfirm');
+        $userAddress=Input::get('userAddress');
+        $userAge=Input::get('userAge');
+
+
+
+        if($userNewPassword!=$userNewPasswordConfirm)
+        {
+            return back()->withErrors([
+                'message' => 'NewPasswordConfirm does not match NewPassword.'
+            ]);
+        }
+        else{
+            if($userNewPassword!=null)
+            {
+                $password=bcrypt($userNewPassword);
+                DB::table('users')
+                    ->where('id',$userID )
+                    ->update(['name'=>$userName,'email'=>$userEmail,'address'=>$userAddress,'age'=>$userAge,'password'=>$password]);
+                return view('sessions.profile');
+            }
+            else{
+                DB::table('users')
+                    ->where('id',$userID )
+                    ->update(['name'=>$userName,'email'=>$userEmail,'address'=>$userAddress,'age'=>$userAge]);
+                return view('sessions.profile');
+            }
+
+
+        }
     }
 
 }

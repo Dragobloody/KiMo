@@ -60,7 +60,8 @@
         <div  id="accsettings" >
             <div class= id="signupContainer">
 
-                <form class="form-signin">
+                <form class="form-signin" method="post" action="updateProfile">
+                    {{csrf_field()}}
                     <div class="container">
                         <div class="row">
                             <div class="col-md-offset-4">
@@ -69,14 +70,15 @@
 
                                         <h3 class="text-center">
                                             Update Account</h3>
-                                    <form>
+
+
                                         <div class="panel-body">
 
                                             <div class="form-group">
                                                 <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                             </span>
-                                                    <input type="text" class="form-control" placeholder="Name" value="{{ \Illuminate\Support\Facades\Auth::user()->name }}"/>
+                                                    <input name="userName" type="text" class="form-control" placeholder="Name" value="{{ \Illuminate\Support\Facades\Auth::user()->name }}"/>
                                                 </div>
                                             </div>
 
@@ -84,35 +86,35 @@
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-                                                    <input type="text" class="form-control" placeholder="Email" value="{{ \Illuminate\Support\Facades\Auth::user()->email }}"/>
+                                                    <input name="userEmail" type="text" class="form-control" placeholder="Email" value="{{ \Illuminate\Support\Facades\Auth::user()->email }}"/>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                                                    <input type="password" class="form-control" placeholder="New Password" />
+                                                    <input name="userNewPassword" type="password" class="form-control" placeholder="New Password" />
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                                                    <input type="password" class="form-control" placeholder="Confirm New Password" />
+                                                    <input name="userNewPasswordConfirm" type="password" class="form-control" placeholder="Confirm New Password" />
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span></span>
-                                                    <input type="text" class="form-control" placeholder="Address" value="{{ \Illuminate\Support\Facades\Auth::user()->address }}"/>
+                                                    <input name="userAddress" type="text" class="form-control" placeholder="Address" value="{{ \Illuminate\Support\Facades\Auth::user()->address }}"/>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                                    <input type="text" class="form-control" placeholder="Age" value="{{ \Illuminate\Support\Facades\Auth::user()->age }}"/>
+                                                    <input name="userAge" type="text" class="form-control" placeholder="Age" value="{{ \Illuminate\Support\Facades\Auth::user()->age }}"/>
                                                 </div>
                                             </div>
 
@@ -120,9 +122,12 @@
                                                 Save
                                             </button>
 
+                                            <div class="form-group">
+                                                @include('layouts.errors')
+                                            </div>
 
                                         </div>
-                                    </form>
+
                                     </div>
                                 </div>
                             </div>

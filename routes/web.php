@@ -22,6 +22,7 @@ Route::get('/login','SessionsController@create')->name('login')->middleware('gue
 Route::post('/login','SessionsController@store');
 Route::post('/addkid','SessionsController@addkid');
 Route::post('/addgroup','SessionsController@addgroup');
+Route::post('/updateProfile','SessionsController@updateProfile');
 Route::get('/logout','SessionsController@destroy')->name('logout');
 
 Route::get('/main','SessionsController@index')->name('main')->middleware('auth');
