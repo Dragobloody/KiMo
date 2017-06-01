@@ -2,6 +2,7 @@
 
 @section('content')
 
+
     <script src="js/profile.js"></script>
 
     <div class="container">
@@ -27,11 +28,6 @@
                     <!-- SIDEBAR MENU -->
                     <div class="profile-usermenu " >
                         <ul class="nav">
-                            <li>
-                                <a href="#" id="toggleOverview">
-                                    <i class="glyphicon glyphicon-home active" > </i>
-                                    Overview </a>
-                            </li>
 
                             <li>
                                 <a href="#"  id="toggleAccsettings">
@@ -60,22 +56,81 @@
             </div>
 
 
-        <div class="col-md-9" id="overview" >
-            <div class="profile-content" id="signupContainer">
 
-                    <table  class="table table-hover" >
-                        Overview
-                    </table>
+        <div  id="accsettings" >
+            <div class= id="signupContainer">
 
-            </div>
-        </div>
+                <form class="form-signin">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-offset-4">
+                                <div class=" panel-default">
+                                    <div class="panel panel-primary">
 
-        <div class="col-md-9" id="accsettings" style="display: none;">
-            <div class="profile-content" id="signupContainer">
+                                        <h3 class="text-center">
+                                            Update Account</h3>
+                                    <form>
+                                        <div class="panel-body">
 
-                    <table  class="table table-hover" >
-                        Account settings
-                    </table>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+                            </span>
+                                                    <input type="text" class="form-control" placeholder="Name" value="{{ \Illuminate\Support\Facades\Auth::user()->name }}"/>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                                                    <input type="text" class="form-control" placeholder="Email" value="{{ \Illuminate\Support\Facades\Auth::user()->email }}"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                                    <input type="password" class="form-control" placeholder="New Password" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                                    <input type="password" class="form-control" placeholder="Confirm New Password" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span></span>
+                                                    <input type="text" class="form-control" placeholder="Address" value="{{ \Illuminate\Support\Facades\Auth::user()->address }}"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                    <input type="text" class="form-control" placeholder="Age" value="{{ \Illuminate\Support\Facades\Auth::user()->age }}"/>
+                                                </div>
+                                            </div>
+
+                                            <button class="btn btn-lg btn-primary btn-block" type="submit">
+                                                Save
+                                            </button>
+
+
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+
 
             </div>
         </div>

@@ -1,13 +1,3 @@
-$(document).on("click", function(e){
-    if($(e.target).is("#toggleOverview")){
-        $("#overview").show();
-    }
-    else
-        if($(e.target).is("#toggleAccsettings") || $(e.target).is("#toggleKids") || $(e.target).is("#toggleGroups") || $(e.target).is("#toggleNotifications") )
-             {
-                 $("#overview").hide();
-             }
-});
 
 $(document).on("click", function(e){
     if($(e.target).is("#toggleAccsettings")){
