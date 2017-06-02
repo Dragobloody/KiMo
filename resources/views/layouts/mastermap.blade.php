@@ -3,23 +3,22 @@
 <head>
     <meta charset="utf-8">
         <title>
-            Laramap
+            Laramap 2
         </title>
 
     </meta>
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/main.css')}}">
     </link>
 </head>
 <body>
    <h1>Laramap</h1>
-    @yield('content')
-    <script crossorigin="anonymous" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" src="https://code.jquery.com/jquery-3.1.0.min.js">
-    </script>
+   @yield('content')
+    <script crossorigin="anonymous" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 
-
-<script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRNhZC1QXdUNlgd5WSlrLWV5XIEK39zvw">
-</script>
+    {{-- Google map api --}}
+    <script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRNhZC1QXdUNlgd5WSlrLWV5XIEK39zvw&libraries=places"></script>
 
 <script src="{{asset ('/js/script.js') }}"></script>
 
