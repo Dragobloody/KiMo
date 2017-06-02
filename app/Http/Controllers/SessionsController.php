@@ -149,6 +149,7 @@ class SessionsController extends Controller
 
     public function updateProfile()
     {
+
         $userID=Auth::user()->id;
         $userName=Input::get('userName');
         $userEmail=Input::get('userEmail');

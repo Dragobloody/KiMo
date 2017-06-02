@@ -152,6 +152,8 @@
 
 
                                     <table id="mytable" class="table panel-table ">
+                                        <h3 class="text-center">
+                                            Edit Your Kids</h3>
 
                                         <thead>
 
