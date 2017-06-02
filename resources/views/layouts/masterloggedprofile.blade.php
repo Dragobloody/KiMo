@@ -13,19 +13,29 @@
     <!-- Bootstrap -->
     <script src="{{ asset('/js/addgroup.js') }}"></script>
 
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="css/custom.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+
     <link href="css/addgroup.css" rel="stylesheet"/>
     <link href="css/signup.css" rel="stylesheet"/>
     <link href="css/footer.css" rel="stylesheet"/>
     <link href="css/buttons.css" rel="stylesheet"/>
     <link href="css/addkid_modal.css" rel="stylesheet"/>
     <link href="css/profile.css" rel="stylesheet"/>
+    <link href="css/custab.css" rel="stylesheet"/>
+    <link href="css/table.css" rel="stylesheet"/>
     <script src="js/addgroup.js"></script>
+
+
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+
 
 
     <!-- Website Font style -->
