@@ -13,7 +13,7 @@ class SessionsController extends Controller
     //
     public function __construct()
     {
-        $this->middleware('guest',['except'=>['destroy','index','profile','addkid','addgroup','updateProfile','maps']]);
+        $this->middleware('guest',['except'=>['destroy','index','profile','addkid','addgroup','updateProfile','maps','editKid','deleteKid']]);
     }
 
     public function create()
@@ -139,11 +139,17 @@ class SessionsController extends Controller
             ->where('users.id',Auth::user()->id)
             ->select('users.name','users.email','users.address','users.age')
             ->get();
-        return view('sessions.profile')->with('user',$user);
+        $kids=DB::table('kids')
+            ->join('user_kid','kids.id_kid','=','user_kid.id_kid')
+            ->where('user_kid.id_user',Auth::user()->id)
+            ->select('kids.name','kids.age','kids.id_kid')
+            ->get();
+        return view('sessions.profile')->with('user',$user)->with('kids',$kids);
     }
 
     public function updateProfile()
     {
+
         $userID=Auth::user()->id;
         $userName=Input::get('userName');
         $userEmail=Input::get('userEmail');
@@ -178,6 +184,26 @@ class SessionsController extends Controller
 
 
         }
+    }
+
+    public function editKid()
+    {
+        $kidID=Input::get('kidID');
+        $kidName=Input::get('kidName');
+        $kidAge=Input::get('kidAge');
+        DB::table('kids')
+            ->where('id_kid',$kidID )
+            ->update(['name'=>$kidName,'age'=>$kidAge]);
+
+        return back();
+
+    }
+
+    public function deleteKid()
+    {
+        $kidID=Input::get('kidID');
+        DB::table('kids')->where('id_kid', '=', $kidID)->delete();
+        return back();
     }
 
     public function maps()

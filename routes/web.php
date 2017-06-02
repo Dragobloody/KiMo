@@ -23,6 +23,8 @@ Route::post('/login','SessionsController@store');
 Route::post('/addkid','SessionsController@addkid');
 Route::post('/addgroup','SessionsController@addgroup');
 Route::post('/updateProfile','SessionsController@updateProfile');
+Route::post('/editKid','SessionsController@editKid');
+Route::post('/deleteKid','SessionsController@deleteKid');
 Route::get('/logout','SessionsController@destroy')->name('logout');
 
 Route::get('/main','SessionsController@index')->name('main')->middleware('auth');
