@@ -13,7 +13,8 @@ class SessionsController extends Controller
     //
     public function __construct()
     {
-        $this->middleware('guest',['except'=>['destroy','index','profile','addkid','addgroup','updateProfile','maps','editKid','deleteKid']]);
+        $this->middleware('guest',['except'=>['destroy','index','profile','addkid','addgroup','updateProfile','maps',
+                                            'editKid','deleteKid','editGroup','deleteGroup']]);
     }
 
     public function create()
@@ -144,7 +145,17 @@ class SessionsController extends Controller
             ->where('user_kid.id_user',Auth::user()->id)
             ->select('kids.name','kids.age','kids.id_kid')
             ->get();
-        return view('sessions.profile')->with('user',$user)->with('kids',$kids);
+        $groups=DB::table('groups')
+            ->join('user_group','groups.id_group','=','user_group.id_group')
+            ->where('user_group.id_user',Auth::user()->id)
+            ->select('groups.name','groups.id_group')
+            ->get();
+        $group_kid=DB::table('group_kid')
+            ->join('user_group','group_kid.id_group','=','user_group.id_group')
+            ->where('user_group.id_user',Auth::user()->id)
+            ->select('group_kid.id_group','group_kid.id_kid')
+            ->get();
+        return view('sessions.profile')->with('user',$user)->with('kids',$kids)->with('groups',$groups)->with('group_kid',$group_kid);
     }
 
     public function updateProfile()
@@ -203,6 +214,24 @@ class SessionsController extends Controller
     {
         $kidID=Input::get('kidID');
         DB::table('kids')->where('id_kid', '=', $kidID)->delete();
+        return back();
+    }
+
+    public function editGroup()
+    {
+        $groupID=Input::get('groupID');
+        $groupName=Input::get('groupName');
+
+        DB::table('groups')
+            ->where('id_group',$groupID )
+            ->update(['name'=>$groupName]);
+        return back();
+    }
+
+    public function deleteGroup()
+    {
+        $groupID=Input::get('groupID');
+        DB::table('groups')->where('id_group', '=', $groupID)->delete();
         return back();
     }
 
