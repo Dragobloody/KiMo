@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
         <title>
-            Laramap 2
+            KiMo
         </title>
 
     </meta>
@@ -13,11 +13,16 @@
     </link>
 </head>
 <body>
-   <h1>Laramap</h1>
-   @yield('content')
-    <script crossorigin="anonymous" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 
-    {{-- Google map api --}}
+<div class="background">
+    @include('layouts.nav')
+    @yield('content')
+    @include('layouts.footer')
+</div>
+{{-- @yield('content')--}}
+  <script crossorigin="anonymous" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+
+  {{-- Google map api --}}
     <script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRNhZC1QXdUNlgd5WSlrLWV5XIEK39zvw&libraries=places"></script>
 
 <script src="{{asset ('/js/script.js') }}"></script>

@@ -20,8 +20,8 @@ $(document).ready(function () {
 
          myLatLng = new google.maps.LatLng(latval,lngval);
         createMap(myLatLng);
-        nearbySearch(myLatLng,"kids");
-
+       nearbySearch(myLatLng,"kids");
+       // searchKids(latval,lngval);
     }
 
     function fail() {
@@ -35,7 +35,7 @@ $(document).ready(function () {
          map = new google.maps.Map(document.getElementById('map'), {
                 center: myLatLng,
                 scrollwheel: false,
-                zoom: 10
+                zoom: 14
             })
         ;
 
@@ -59,7 +59,7 @@ $(document).ready(function () {
     function nearbySearch(myLatLng,type) {
     var request = {
         location: myLatLng,
-        radius: '2500',
+        radius: '1300',
         types: [type]
     };
 
@@ -85,6 +85,12 @@ $(document).ready(function () {
 
 
     }
+
+    /*function searchKids(lat, lng) {
+        $.post('http://location/searchKids', {lat:lat, lng:lng}, function (match) {
+        console.log(match);
+        });
+    }*/
 }
 
 });
