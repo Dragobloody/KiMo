@@ -1,15 +1,49 @@
-
+var map;
+var myLatLng;
 $(document).ready(function () {
+    geoLocationInit();
+    function geoLocationInit() {
+        //current position of the device
+        if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(success,fail);
 
-    var myLatLng = new google.maps.LatLng(48.943740, 5.7771445);
+        }else {
+            alert("Browser not supported");
+        }
+
+    }
+
+    function success(position) {
+        console.log(position)
+        var latval=position.coords.latitude;
+        var lngval=position.coords.longitude;
+
+         myLatLng = new google.maps.LatLng(latval,lngval);
+        createMap(myLatLng);
+        nearbySearch(myLatLng,"kids");
+
+    }
+
+    function fail() {
+        alert("It fails");
+
+    }
+
+    //var myLatLng = new google.maps.LatLng(48.943740, 5.7771445);
 
     function createMap(myLatLang) {
-        var map = new google.maps.Map(document.getElementById('map'), {
+         map = new google.maps.Map(document.getElementById('map'), {
                 center: myLatLng,
                 scrollwheel: false,
                 zoom: 10
             })
         ;
+
+         var marker= new google.maps.Marker({
+             position:myLatLang,
+             map: map
+
+         });
     }
 
 //marker
@@ -22,11 +56,11 @@ $(document).ready(function () {
         });
     }
 
-function nearbySearch(myLatLng) {
+    function nearbySearch(myLatLng,type) {
     var request = {
         location: myLatLng,
-        radius: '1500',
-        types: ['kids']
+        radius: '2500',
+        types: [type]
     };
 
     service = new google.maps.places.PlacesService(map);
