@@ -59,6 +59,7 @@ class SessionsController extends Controller
         {
             $data=array('id_kid'=>$kid,'id_object'=>$obb->id_object,'status'=>0);
             DB::table('kid_object')->insert($data);
+            
         }
 
         return redirect("/main");
