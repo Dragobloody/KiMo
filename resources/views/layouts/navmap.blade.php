@@ -1,6 +1,15 @@
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 
+
+{{--
+ * Created by PhpStorm.
+ * User: Andreea
+ * Date: 6/3/2017
+ * Time: 2:44 PM
+ */
+ --}}
 
 <nav class="navbar navbar-inverse fixed-top">
     <div class="container-fluid">
@@ -10,6 +19,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+
             @if(Auth::check())
                 <a class="navbar-brand" href="main">KiMo</a>
             @else
@@ -78,4 +88,5 @@
 
     });
 </script>
+
 

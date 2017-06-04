@@ -1,5 +1,6 @@
 var map;
 var myLatLng;
+var mark = [];
 $(document).ready(function () {
     geoLocationInit();
     function geoLocationInit() {
@@ -14,14 +15,18 @@ $(document).ready(function () {
     }
 
     function success(position) {
-        console.log(position)
-        var latval=position.coords.latitude;
-        var lngval=position.coords.longitude;
+        //console.log(position)
+        var latval = position.coords.latitude;
+        var lngval = position.coords.longitude;
 
-         myLatLng = new google.maps.LatLng(latval,lngval);
+        console.log([latval, lngval]);
+
+        myLatLng = new google.maps.LatLng(latval, lngval);
         createMap(myLatLng);
-       nearbySearch(myLatLng,"kids");
-       // searchKids(latval,lngval);
+        //nearbySearch(myLatLng,"school");
+        searchKids();
+       // deleteMarkers();
+
     }
 
     function fail() {
@@ -57,14 +62,15 @@ $(document).ready(function () {
     }
 
     function nearbySearch(myLatLng,type) {
-    var request = {
-        location: myLatLng,
-        radius: '1300',
-        types: [type]
-    };
+        var request = {
+            location: myLatLng,
+            radius: '1300',
+            types: [type]
+        };
 
-    service = new google.maps.places.PlacesService(map);
-    service.nearbySearch(request, callback);
+
+   service = new google.maps.places.PlacesService(map);
+   // service.nearbySearch(request, callback);
 
 
     function callback(results, status) {
@@ -85,13 +91,127 @@ $(document).ready(function () {
 
 
     }
+    }
 
-    /*function searchKids(lat, lng) {
-        $.post('http://location/searchKids', {lat:lat, lng:lng}, function (match) {
-        console.log(match);
+    var customLabel = {
+        restaurant: {
+            label: 'R'
+        },
+        bar: {
+            label: 'B'
+        }
+    };
+
+    function searchKids() {
+
+     //   var infoWindow = new google.maps.InfoWindow;
+
+        // Change this depending on the name of your PHP or XML file
+        downloadUrl('xml.php', function(data) {
+            var xml = data.responseXML;
+            var markers = xml.documentElement.getElementsByTagName('marker');
+            Array.prototype.forEach.call(markers, function(markerElem) {
+                var id = markerElem.getAttribute('id');
+                var name = markerElem.getAttribute('name');
+                var address = markerElem.getAttribute('address');
+                var type = markerElem.getAttribute('type');
+                var point = new google.maps.LatLng(
+                    parseFloat(markerElem.getAttribute('lat')),
+                    parseFloat(markerElem.getAttribute('lng')));
+
+                var infowincontent = document.createElement('div');
+                var strong = document.createElement('strong');
+                strong.textContent = name
+                infowincontent.appendChild(strong);
+                infowincontent.appendChild(document.createElement('br'));
+
+                var text = document.createElement('text');
+                text.textContent = address
+                infowincontent.appendChild(text);
+                var icon = customLabel[type] || {};
+                addMarker(point,infowincontent);
+                showMarkers();
+                //deleteMarkers();
+
+
+               /* var marker = new google.maps.Marker({
+                    map: map,
+                    position: point,
+                    icon:"img/drg.png",
+                    //label: icon.label
+                    animation: google.maps.Animation.BOUNCE
+                });
+                marker.addListener('click', function() {
+                    infoWindow.setContent(infowincontent);
+                    infoWindow.open(map, marker);
+                });
+
+                mark.push(marker);
+                */
+            });
         });
-    }*/
-}
+
+
+    }
+
+    function addMarker(point,infowincontent) {
+        var infoWindow = new google.maps.InfoWindow;
+        var marker = new google.maps.Marker({
+            map: map,
+            position: point,
+            icon:"img/drg.png",
+            //label: icon.label
+            animation: google.maps.Animation.BOUNCE
+        });
+        marker.addListener('click', function() {
+            infoWindow.setContent(infowincontent);
+            infoWindow.open(map, marker);
+        });
+
+        mark.push(marker);
+    }
+    function showMarkers() {
+        setMapOnAll(map);
+    }
+
+    function setMapOnAll(map) {
+        for (var i = 0; i < mark.length; i++) {
+            mark[i].setMap(map);
+        }
+    }
+
+    function clearMarkers() {
+        setMapOnAll(null);
+    }
+
+    function deleteMarkers() {
+        clearMarkers();
+        mark = [];
+    }
+
+    function downloadUrl(url, callback) {
+        var request = window.ActiveXObject ?
+            new ActiveXObject('Microsoft.XMLHTTP') :
+            new XMLHttpRequest;
+
+        request.onreadystatechange = function() {
+            if (request.readyState == 4) {
+                request.onreadystatechange = doNothing;
+                callback(request, request.status);
+            }
+        };
+
+        request.open('GET', url, true);
+        request.send(null);
+    }
+
+
+    function doNothing() {}
+
+    deleteMarkers();
+    setInterval(deleteMarkers,5000);
+
+    setInterval(searchKids,5000);
 
 });
 

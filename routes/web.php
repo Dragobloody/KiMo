@@ -38,7 +38,17 @@ Route::get('/notifications','SessionsController@notifications')->middleware('aut
 Route::get('/notification','SessionsController@fetch');
 
 
+
 Route::get('/map', 'SessionsController@start')->middleware('auth');
 
 
 
+Route::get('/map', function(){
+    return view('sessions.frontmap');
+});
+/*
+Route::post('/searchKids', 'SearchKidsController@searchKids');
+>>>>>>> Stashed changes
+
+
+*/

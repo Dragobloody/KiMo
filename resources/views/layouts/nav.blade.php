@@ -18,6 +18,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="profile">{{ Auth::user()->name }}</a></li>
                 <li><a href="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+
             </ul>
             @else
 
