@@ -51,10 +51,16 @@ class SessionsController extends Controller
         $data=array('name'=>$name,'age'=>$age);
         DB::table('kids')->insert($data);
         $kid = DB::table('kids')->where('name',$name)->where('age',$age)->value('id_kid');
+        $object= DB::table('objects')->select('id_object')->get();
 
-
-        $data=array('id_user'=>$userID,'id_kid'=>$kid);
+        $data=array('id_user'=>$userID,'id_kid'=>$kid,'status'=>0);
         DB::table('user_kid')->insert($data);
+        foreach ($object as $obb)
+        {
+            $data=array('id_kid'=>$kid,'id_object'=>$obb->id_object,'status'=>0);
+            DB::table('kid_object')->insert($data);
+        }
+
         return redirect("/main");
 
     }

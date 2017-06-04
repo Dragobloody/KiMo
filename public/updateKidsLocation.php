@@ -33,7 +33,7 @@ include("connect.php");
 
 echo 'salut';
     include('checkDistances.php');
-    $query1 = "SELECT lat,lng FROM users where id=2";
+    $query1 = "SELECT lat,lng FROM users where id=".$userID;
     $result1 = mysqli_query($connect, $query1);
     $row1 = mysqli_fetch_array($result1);
 
