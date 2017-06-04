@@ -11,13 +11,30 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/main.css')}}">
     </link>
+
+    <style>
+        body {
+            background-image: url('http://i.imgur.com/lvwDiYv.jpg');
+            background-repeat:no-repeat;
+            background-size:cover;
+            background-position:center;
+            background-attachment: fixed;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+
+        }
+        html {
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
 
-<div class="background">
-    @include('layouts.nav')
+<div class="">
+    @include('layouts.navmap')
     @yield('content')
-    @include('layouts.footer')
+
 </div>
 {{-- @yield('content')--}}
   <script crossorigin="anonymous" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>

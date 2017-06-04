@@ -8,7 +8,30 @@
         <div id="map" >
 
 
-         </div>
-
+        </div>
     </div>
+
+    <script>
+        $(document).ready(function(){
+
+            function update_kids_location(view = '')
+            {
+                $.ajax({
+                    url:"updateKidsLocation.php",
+                    method:"POST",
+                    data:{view:view,
+                        userID:{{ \Illuminate\Support\Facades\Auth::user()->id }} },
+                    dataType:"json"
+
+                });
+            }
+
+
+            setInterval(function(){
+                update_kids_location();
+            }, 2000);
+
+        });
+    </script>
+
 @endsection

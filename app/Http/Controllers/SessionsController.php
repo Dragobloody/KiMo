@@ -14,7 +14,7 @@ class SessionsController extends Controller
     public function __construct()
     {
         $this->middleware('guest',['except'=>['destroy','index','profile','addkid','addgroup','updateProfile','maps',
-                                            'editKid','deleteKid','editGroup','deleteGroup','notifications']]);
+                                            'editKid','deleteKid','editGroup','deleteGroup','notifications','start']]);
     }
 
     public function create()
@@ -244,10 +244,35 @@ class SessionsController extends Controller
         return view('sessions.index');
     }
 
-    public function fetch()
+    public function start()
     {
-        return view('notif.fetch');
+        $userID=Auth::user()->id;
+        $kid_groupID=Input::get('selected');
+        $id=substr($kid_groupID, 1);
+
+        DB::table('kids')
+            ->join ('user_kid','user_kid.id_kid','=','kids.id_kid')
+            ->where('user_kid.id_user',$userID )
+            ->update(['kids.followed'=>0]);
+
+        if(strcmp($kid_groupID,'h')<0)
+        {
+            DB::table('kids')
+                ->join ('group_kid','kids.id_kid','=','group_kid.id_kid')
+                ->join ('user_kid','user_kid.id_kid','=','kids.id_kid')
+                ->where('group_kid.id_group',$id )
+                ->where('user_kid.id_user',$userID)
+                ->update(['kids.followed'=>1]);
+        }
+        else{
+            DB::table('kids')
+                ->where('id_kid',$id)
+                ->update(['followed'=>1]);
+        }
+        return view('sessions.frontmap');
+
     }
+
 
 
 

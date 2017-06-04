@@ -27,18 +27,18 @@ Route::post('/editKid','SessionsController@editKid');
 Route::post('/deleteKid','SessionsController@deleteKid');
 Route::post('/editGroup','SessionsController@editGroup');
 Route::post('/deleteGroup','SessionsController@deleteGroup');
+Route::post('/start','SessionsController@start');
 Route::get('/logout','SessionsController@destroy')->name('logout');
 
 Route::get('/main','SessionsController@index')->name('main')->middleware('auth');
 Route::get('/profile','SessionsController@profile')->name('profile')->middleware('auth');
 
 Route::get('/maps','SessionsController@maps')->name('maps');
-Route::get('/notifications','SessionsController@notifications');
+Route::get('/notifications','SessionsController@notifications')->middleware('auth');
+Route::get('/notification','SessionsController@fetch');
 
 
-Route::get('/map', function(){
-    return view('sessions.frontmap');
-});
+Route::get('/map', 'SessionsController@start')->middleware('auth');
 
 
 

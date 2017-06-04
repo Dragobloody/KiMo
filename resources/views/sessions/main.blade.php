@@ -91,24 +91,25 @@
         <div class="modal-dialog">
             <div class="loginmodal-container">
                 <h1>START</h1><br>
-                <form method="POST" action="#" data-toggle="validator" data-disable="false">
+                <form method="POST" action="start" data-toggle="validator" data-disable="false">
                     {{csrf_field()}}
 
                     <h5>GROUPS</h5>
                     @foreach($groups as $group)
 
-                        <input type="radio" name="selected" value="{{ $group->id_group }}" required="required">{{ $group->name }}  <br>
+                        <input type="radio" name="selected" value="g{{ $group->id_group }}" required="required">{{ $group->name }}  <br>
+
 
                     @endforeach
                     <br>
                     <h5>KIDS</h5>
                     @foreach($kids as $kid)
 
-                        <input type="radio" name="selected" value="{{ $kid->id_kid }}" required="required">{{ $kid->name }} ({{ $kid->age }} years old) <br>
+                        <input type="radio" name="selected" value="k{{ $kid->id_kid }}" required="required">{{ $kid->name }} ({{ $kid->age }} years old) <br>
 
                     @endforeach
                     <hr>
-                    <input type="submit" name="add" class="login loginmodal-submit" value="Start">
+                    <input type="submit" name="start" class="login loginmodal-submit" value="Start">
 
                 </form>
 
