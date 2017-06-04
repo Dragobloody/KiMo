@@ -13,7 +13,7 @@ if(isset($_POST["view"]))
                 join kid_notification kn on n.id_notification=kn.id_notification
                 join kids k on k.id_kid=kn.id_kid
                 join user_kid uk on uk.id_kid=k.id_kid
-                SET status=1 WHERE status=0 and uk.id_user=".$userID;
+                SET n.status=1 WHERE n.status=0 and uk.id_user=".$userID;
         mysqli_query($connect, $update_query);
     }
 

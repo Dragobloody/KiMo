@@ -30,26 +30,9 @@ include("connect.php");
 
     $result = mysqli_query($connect, $query);
 
-
-echo 'salut';
     include('checkDistances.php');
-    $query1 = "SELECT lat,lng FROM users where id=".$userID;
-    $result1 = mysqli_query($connect, $query1);
-    $row1 = mysqli_fetch_array($result1);
 
-
-
-    $query2=" select k.lat AS lat,k.lng AS lng from kids k join user_kid uk on k.id_kid=uk.id_kid
-              where k.followed=1 and uk.id_user=".$userID;
-    $result2 = mysqli_query($connect, $query2);
-
-    while($row2 = @mysqli_fetch_assoc($result2))
-    {
-        if($rezultat=calculateDistance($row1['lat'],$row1['lng'],$row2['lat'],$row2['lng'])>2)
-        {
-
-        }
-    }
+    distanceKidObject($userID,$connect);
 
 
 

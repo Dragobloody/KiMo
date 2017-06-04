@@ -48,7 +48,7 @@ class SessionsController extends Controller
         echo $userID;
         //echo $kid->id_kid;
 
-        $data=array('name'=>$name,'age'=>$age);
+        $data=array('name'=>$name,'age'=>$age,'followed'=>0);
         DB::table('kids')->insert($data);
         $kid = DB::table('kids')->where('name',$name)->where('age',$age)->value('id_kid');
         $object= DB::table('objects')->select('id_object')->get();
@@ -59,7 +59,7 @@ class SessionsController extends Controller
         {
             $data=array('id_kid'=>$kid,'id_object'=>$obb->id_object,'status'=>0);
             DB::table('kid_object')->insert($data);
-            
+
         }
 
         return redirect("/main");
