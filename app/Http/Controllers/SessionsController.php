@@ -14,7 +14,7 @@ class SessionsController extends Controller
     public function __construct()
     {
         $this->middleware('guest',['except'=>['destroy','index','profile','addkid','addgroup','updateProfile','maps',
-                                            'editKid','deleteKid','editGroup','deleteGroup']]);
+                                            'editKid','deleteKid','editGroup','deleteGroup','notifications']]);
     }
 
     public function create()
@@ -238,6 +238,15 @@ class SessionsController extends Controller
     public function maps()
     {
         return view('sessions.maps');
+    }
+    public function notifications()
+    {
+        return view('sessions.index');
+    }
+
+    public function fetch()
+    {
+        return view('notif.fetch');
     }
 
 

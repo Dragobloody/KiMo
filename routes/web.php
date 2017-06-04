@@ -33,6 +33,8 @@ Route::get('/main','SessionsController@index')->name('main')->middleware('auth')
 Route::get('/profile','SessionsController@profile')->name('profile')->middleware('auth');
 
 Route::get('/maps','SessionsController@maps')->name('maps');
+Route::get('/notifications','SessionsController@notifications');
+
 
 Route::get('/map', function(){
     return view('sessions.frontmap');
