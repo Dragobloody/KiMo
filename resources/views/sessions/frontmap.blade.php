@@ -29,7 +29,7 @@
 
             setInterval(function(){
                 update_kids_location();
-            }, 2000);
+            }, 1000);
 
         });
     </script>

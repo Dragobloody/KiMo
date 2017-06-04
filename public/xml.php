@@ -1,5 +1,6 @@
 <?php
-
+use Illuminate\Support\Facades\Auth;
+//$userID=Auth::user()->id;
 $username="root";
 $password="KiMo";
 $database="kiMo";
@@ -27,7 +28,7 @@ if (!$db_selected) {
     die ('Can\'t use db : ' . mysqli_error());
 }
 
-$query = "SELECT * FROM kiddos WHERE 1";
+$query = "SELECT * FROM kids k join user_kid uk on k.id_kid=uk.id_kid WHERE k.followed=1 ";
 $result = mysqli_query($connection, $query);
 if (!$result) {
     die('Invalid query: ' . mysqli_error());
@@ -50,9 +51,9 @@ while ($row = @mysqli_fetch_assoc($result)){
     // Add to XML document node
     echo '<marker ';
 
-    echo 'name="' . parseToXML($row['name']) . '" ';
-    echo 'lat="' . $row['lat'] . '" ';
-    echo 'lng="' . $row['lng'] . '" ';
+    echo 'name="' . parseToXML($row['NAME']) . '" ';
+    echo 'lat="' . $row['LAT'] . '" ';
+    echo 'lng="' . $row['LNG'] . '" ';
 
 
     echo '/>';

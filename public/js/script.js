@@ -108,6 +108,7 @@ $(document).ready(function () {
 
         // Change this depending on the name of your PHP or XML file
         downloadUrl('xml.php', function(data) {
+
             var xml = data.responseXML;
             var markers = xml.documentElement.getElementsByTagName('marker');
             Array.prototype.forEach.call(markers, function(markerElem) {
@@ -209,9 +210,9 @@ $(document).ready(function () {
     function doNothing() {}
 
     deleteMarkers();
-    setInterval(deleteMarkers,5000);
+    setInterval(deleteMarkers,2000);
 
-    setInterval(searchKids,5000);
+    setInterval(searchKids,2000);
 
 });
 
