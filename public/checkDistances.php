@@ -49,6 +49,7 @@ function distanceKidObject($userID,$connect)
             else{
                 if($row2['status']==1)
                 {
+                    
                     $query7=" update kid_object set status=0 where id_kid=".$row1['id_kid']." and id_object=".$row2['id_object'];
                     $result7 = mysqli_query($connect, $query7);
 
