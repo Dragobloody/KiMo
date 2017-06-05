@@ -4,7 +4,7 @@
 
 
 
-
+<!--
 <div id="map"></div>
 
 <script>
@@ -84,5 +84,5 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRNhZC1QXdUNlgd5WSlrLWV5XIEK39zvw&callback=initMap">
 </script>
 
-
+-->
 @endsection
