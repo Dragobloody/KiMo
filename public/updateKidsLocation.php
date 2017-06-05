@@ -2,8 +2,10 @@
 
 <?php
 
-//fetch.php;
-include("connect.php");
+
+    include("connect.php");
+    include('checkDistances.php');
+
     $userID=$_POST['userID'];
     $ran=rand(1,4);
     if($ran==1)
@@ -27,10 +29,7 @@ include("connect.php");
                 set k.lat=k.lat-0.001 , k.lng=k.lng-0.001 where k.followed=1 and uk.id_user=".$userID;
 
     }
-
     $result = mysqli_query($connect, $query);
-
-    include('checkDistances.php');
 
     distanceKidObject($userID,$connect);
 
