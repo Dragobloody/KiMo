@@ -31,7 +31,14 @@
     }
     $result = mysqli_query($connect, $query);
 
+
     distanceKidObject($userID,$connect);
+    distanceUserKid($userID,$connect)
+
+
+    //include('checkDistances.php');
+
+
 
 
 

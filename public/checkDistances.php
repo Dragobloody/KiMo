@@ -58,4 +58,60 @@ function distanceKidObject($userID,$connect)
         }
     }
 }
+
+function distanceUserKid($userID,$connect){
+
+$query1 = "SELECT lat,lng FROM users where id=".$userID;
+    $result1 = mysqli_query($connect, $query1);
+    $row1 = mysqli_fetch_array($result1);
+
+
+
+    $query2=" select k.lat AS lat,k.lng AS lng, uk.status AS status, uk.id_kid AS id_kid from kids k join user_kid uk on k.id_kid=uk.id_kid
+              where k.followed=1 and uk.id_user=".$userID;
+    $result2 = mysqli_query($connect, $query2);
+
+
+
+    while($row2 = @mysqli_fetch_assoc($result2))
+    {
+        if($rezultat=calculateDistance($row1['lat'],$row1['lng'],$row2['lat'],$row2['lng'])>3 )
+        {
+
+            if($row2['status']==0)
+            {
+                /*$query4="INSERT INTO notifications ( MESSAGE, GENERATE_TIME, STATUS) VALUES ( 'The kis is far from you', SYS_DATE, '0');
+            $result = mysqli_query($connect, $query);
+
+
+
+            */
+
+                $query3=" update user_kid set status=1 where id_kid=".$row2['id_kid']." and id_user=".$userID;
+                $result3 = mysqli_query($connect, $query3);
+
+                $query4="insert into notifications (message,status) values('S-a departat de dumneavoastra',0) ";
+                $result4 = mysqli_query($connect, $query4);
+
+                $query5="select max(id_notification) as id_notification from notifications";
+                $result5 = mysqli_query($connect, $query5);
+                $row3 = @mysqli_fetch_assoc($result5);
+
+                $query6="insert into kid_notification (id_kid,id_notification) values(".$row2['id_kid'].",".$row3['id_notification'].") ";
+                $result6 = mysqli_query($connect, $query6);
+            }
+
+        }
+
+
+        else{
+            if($row2['status']==1){
+
+                $query7=" update user_kid set status=0 where id_kid=".$row2['id_kid']." and id_user=".$userID;
+                $result7 = mysqli_query($connect, $query7);
+             }
+        }
+
+    }
+}
 ?>

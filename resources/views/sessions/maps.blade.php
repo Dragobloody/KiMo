@@ -9,10 +9,10 @@
 
 <script>
     var customLabel = {
-        restaurant: {
-            label: 'R'
+        girls: {
+            label: 'G'
         },
-        bar: {
+        boy: {
             label: 'B'
         }
     };

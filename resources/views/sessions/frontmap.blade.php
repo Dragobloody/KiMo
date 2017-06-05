@@ -5,7 +5,9 @@
 
     <div class="container">
 
-        <div id="map" >
+        <div id="map" style= "height: 500px;
+                             width: 80%;
+                              margin: 0 auto;">
 
 
         </div>

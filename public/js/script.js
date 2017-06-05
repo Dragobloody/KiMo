@@ -19,6 +19,9 @@ $(document).ready(function () {
         var latval = position.coords.latitude;
         var lngval = position.coords.longitude;
 
+
+
+
         console.log([latval, lngval]);
 
         myLatLng = new google.maps.LatLng(latval, lngval);
@@ -94,13 +97,14 @@ $(document).ready(function () {
     }
 
     var customLabel = {
-        restaurant: {
-            label: 'R'
+        girl: {
+            label: 'G'
         },
-        bar: {
+        boy: {
             label: 'B'
         }
     };
+
 
     function searchKids() {
 
