@@ -75,7 +75,7 @@ $query1 = "SELECT lat,lng FROM users where id=".$userID;
 
     while($row2 = @mysqli_fetch_assoc($result2))
     {
-        if($rezultat=calculateDistance($row1['lat'],$row1['lng'],$row2['lat'],$row2['lng'])>3 )
+        if($rezultat=calculateDistance($row1['lat'],$row1['lng'],$row2['lat'],$row2['lng'])>1 )
         {
 
             if($row2['status']==0)
