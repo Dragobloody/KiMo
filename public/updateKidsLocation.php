@@ -35,14 +35,16 @@ if($ran==1)
                 and k.lat-0.0002> ".$minLat." and k.lng+0.0002<".$maxLng."  and uk.id_kid=28 and uk.id_user=" . $userID;
 
         $query3=" update kids k join user_kid uk on k.id_kid=uk.id_kid
-                 set k.lat=k.lat-0.0002 , k.lng=k.lng-0.0004 where k.followed=1 
-                 and k.lat-0.0004> ".$minLat." and k.lng-0.0004>".$minLng."  and uk.id_kid=32 and uk.id_user=".$userID;
+                 set k.lat=k.lat-0.0001 , k.lng=k.lng-0.0001 where k.followed=1 
+                 and k.lat-0.0002> ".$minLat." and k.lng-0.0002>".$minLng."  and uk.id_kid=32 and uk.id_user=".$userID;
+
         $query4=" update kids k join user_kid uk on k.id_kid=uk.id_kid
-                 set k.lat=k.lat+0.0002 , k.lng=k.lng-0.0003 where k.followed=1 
-                 and k.lat+0.0002< ".$maxLat." and k.lng-0.0003>".$minLng."  and uk.id_kid=33 and uk.id_user=".$userID;
+                 set k.lat=k.lat+0.0002 , k.lng=k.lng-0.0002 where k.followed=1 
+                 and k.lat+0.0003< ".$maxLat." and k.lng-0.0003>".$minLng."  and uk.id_kid=33 and uk.id_user=".$userID;
+
         $query5=" update kids k join user_kid uk on k.id_kid=uk.id_kid
-                 set k.lat=k.lat+0.0004 , k.lng=k.lng-0.0003 where k.followed=1
-                 and k.lat+0.0004< ".$maxLat." and k.lng-0.0003>".$minLng."   and uk.id_kid>33 and uk.id_user=".$userID;
+                 set k.lat=k.lat+0.0001 , k.lng=k.lng+0.0001 where k.followed=1
+                 and k.lat+0.0002< ".$maxLat." and k.lng+0.0002<".$maxLng."   and uk.id_kid>33 and uk.id_user=".$userID;
 
 
 }
@@ -51,14 +53,22 @@ if($ran==2)
         $query1 = " update kids k join user_kid uk on k.id_kid=uk.id_kid
                 set k.lat=k.lat+0.0002 , k.lng=k.lng-0.0002 where k.followed=1
                 and k.lat+0.0003< ".$maxLat." and k.lng-0.0003>".$minLng." and uk.id_kid=30 and uk.id_user=" . $userID;
+
         $query2 = " update kids k join user_kid uk on k.id_kid=uk.id_kid
-                set k.lat=k.lat+0.0001 , k.lng=k.lng-0.0003 where k.followed=1  and uk.id_kid=28 and uk.id_user=" . $userID;
+                set k.lat=k.lat+0.0001 , k.lng=k.lng-0.0001 where k.followed=1  
+                and k.lat+0.0002< ".$maxLat." and k.lng-0.0002>".$minLng." and uk.id_kid=28 and uk.id_user=" . $userID;
+
         $query3=" update kids k join user_kid uk on k.id_kid=uk.id_kid
-                 set k.lat=k.lat+0.0004 , k.lng=k.lng+0.0004 where k.followed=1  and uk.id_kid=32 and uk.id_user=".$userID;
+                 set k.lat=k.lat+0.0001 , k.lng=k.lng+0.0001 where k.followed=1  
+                 and k.lat+0.0002< ".$maxLat." and k.lng-0.0002>".$minLng." and uk.id_kid=32 and uk.id_user=".$userID;
+
         $query4=" update kids k join user_kid uk on k.id_kid=uk.id_kid
-                 set k.lat=k.lat-0.0002 , k.lng=k.lng-0.0003 where k.followed=1  and uk.id_kid=33 and uk.id_user=".$userID;
+                 set k.lat=k.lat-0.0002 , k.lng=k.lng-0.0002 where k.followed=1  
+                 and k.lat-0.0003< ".$minLat." and k.lng-0.0003>".$minLng." and uk.id_kid=33 and uk.id_user=".$userID;
+
         $query5=" update kids k join user_kid uk on k.id_kid=uk.id_kid
-                 set k.lat=k.lat+0.0004 , k.lng=k.lng-0.0003 where k.followed=1  and uk.id_kid>33 and uk.id_user=".$userID;
+                  set k.lat=k.lat+0.0001 , k.lng=k.lng-0.0001 where k.followed=1
+                  and k.lat+0.0002< ".$maxLat." and k.lng-0.0002>".$minLng." and uk.id_kid>33 and uk.id_user=".$userID;
 
 
 }
@@ -67,14 +77,22 @@ if($ran==3)
         $query1 = " update kids k join user_kid uk on k.id_kid=uk.id_kid
                 set k.lat=k.lat-0.0002 , k.lng=k.lng+0.0002 where k.followed=1 
                 and k.lat-0.0003> ".$minLat." and k.lng+0.0003<".$maxLng." and uk.id_kid=30 and uk.id_user=" . $userID;
+
         $query2 = " update kids k join user_kid uk on k.id_kid=uk.id_kid
-                set k.lat=k.lat+0.0001 , k.lng=k.lng-0.0006 where k.followed=1  and uk.id_kid=28 and uk.id_user=" . $userID;
+                set k.lat=k.lat-0.0001 , k.lng=k.lng-0.0001 where k.followed=1
+                    and k.lat-0.0002> ".$minLat." and k.lng-0.0002>".$minLng."and uk.id_kid=28 and uk.id_user=" . $userID;
+
         $query3=" update kids k join user_kid uk on k.id_kid=uk.id_kid
-                 set k.lat=k.lat-0.0004 , k.lng=k.lng+0.0004 where k.followed=1  and uk.id_kid=32 and uk.id_user=".$userID;
+                 set k.lat=k.lat-0.0001 , k.lng=k.lng+0.0001 where k.followed=1 
+                 and k.lat-0.0002< ".$minLat." and k.lng+0.0002>".$maxLng." and uk.id_kid=32 and uk.id_user=".$userID;
+
         $query4=" update kids k join user_kid uk on k.id_kid=uk.id_kid
-                 set k.lat=k.lat-0.0002 , k.lng=k.lng-0.0005 where k.followed=1  and uk.id_kid=33 and uk.id_user=".$userID;
-        $query5=" update kids k join user_kid uk on k.id_kid=uk.id_kid
-                 set k.lat=k.lat-0.0003 , k.lng=k.lng+0.0005 where k.followed=1  and uk.id_kid>33 and uk.id_user=".$userID;
+                 set k.lat=k.lat-0.0002 , k.lng=k.lng+0.0002 where k.followed=1 
+                 and k.lat-0.0003< ".$minLat." and k.lng+0.0003>".$maxLng." and uk.id_kid=33 and uk.id_user=".$userID;
+
+        $query5="update kids k join user_kid uk on k.id_kid=uk.id_kid
+                 set k.lat=k.lat-0.0001 , k.lng=k.lng+0.0001 where k.followed=1  
+                 and k.lat+0.0002> ".$minLat." and k.lng-0.0002<".$maxLng." and uk.id_kid>33 and uk.id_user=".$userID;
 
 
 
@@ -84,14 +102,22 @@ if($ran==4)
         $query1 = " update kids k join user_kid uk on k.id_kid=uk.id_kid
                 set k.lat=k.lat-0.0002 , k.lng=k.lng-0.0002 where k.followed=1 
                 and k.lat-0.0003> ".$minLat." and k.lng-0.0003>".$minLng." and uk.id_kid=30 and uk.id_user=" . $userID;
+
         $query2 = " update kids k join user_kid uk on k.id_kid=uk.id_kid
-                set k.lat=k.lat-0.0001 , k.lng=k.lng-0.0006 where k.followed=1  and uk.id_kid=28 and uk.id_user=" . $userID;
-        $query3=" update kids k join user_kid uk on k.id_kid=uk.id_kid
-                 set k.lat=k.lat+0.0004 , k.lng=k.lng+0.0004 where k.followed=1  and uk.id_kid=32 and uk.id_user=".$userID;
-        $query4=" update kids k join user_kid uk on k.id_kid=uk.id_kid
-                 set k.lat=k.lat+0.0007 , k.lng=k.lng+0.0005 where k.followed=1  and uk.id_kid=33 and uk.id_user=".$userID;
+                set k.lat=k.lat+0.0001 , k.lng=k.lng+0.0001 where k.followed=1  
+                  and k.lat+0.0002< ".$maxLat." and k.lng+0.0002>".$maxLng."and uk.id_kid=28 and uk.id_user=" . $userID;
+
+        $query3="update kids k join user_kid uk on k.id_kid=uk.id_kid
+                 set k.lat=k.lat+0.0001 , k.lng=k.lng-0.0001 where k.followed=1  
+                 and k.lat+0.0002< ".$maxLat." and k.lng-0.0002>".$minLng." and uk.id_kid=32 and uk.id_user=".$userID;
+
+        $query4="update kids k join user_kid uk on k.id_kid=uk.id_kid
+                 set k.lat=k.lat+0.0002 , k.lng=k.lng+0.0002 where k.followed=1
+                 and k.lat+0.0003< ".$maxLat." and k.lng+0.0003>".$maxLng."  and uk.id_kid=33 and uk.id_user=".$userID;
+
         $query5=" update kids k join user_kid uk on k.id_kid=uk.id_kid
-                 set k.lat=k.lat-0.0002 , k.lng=k.lng+0.0004 where k.followed=1  and uk.id_kid>33 and uk.id_user=".$userID;
+                 set k.lat=k.lat-0.0001 , k.lng=k.lng-0.0001 where k.followed=1 
+                 and k.lat-0.0002>".$minLat." and k.lng-0.0002>".$minLng." and uk.id_kid>33 and uk.id_user=".$userID;
 
 
 }
@@ -109,7 +135,8 @@ $result4 = mysqli_query($connect, $query4);
 $result5 = mysqli_query($connect, $query4);
 
 distanceKidObject($userID,$connect);
-distanceUserKid($userID,$connect)
+distanceUserKid($userID,$connect);
+distanceKidFriends($userID,$connect);
 
 
 //include('checkDistances.php');

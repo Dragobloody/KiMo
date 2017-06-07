@@ -27,7 +27,7 @@ function distanceKidObject($userID,$connect)
         while($row2 = @mysqli_fetch_assoc($result2))
         {
 
-            if(calculateDistance($row1['lat'],$row1['lng'],$row2['lat'],$row2['lng'])<6)
+            if(calculateDistance($row1['lat'],$row1['lng'],$row2['lat'],$row2['lng'])<0.05)
             {
 
                 if($row2['status']==0)
@@ -59,6 +59,57 @@ function distanceKidObject($userID,$connect)
     }
 }
 
+function distanceKidFriends($userID,$connect)
+{
+
+    $query1=" select k.lat AS lat,k.lng AS lng,k.id_kid as id_kid from kids k join user_kid uk on k.id_kid=uk.id_kid
+              where k.followed=1 and uk.id_user=".$userID;
+    $result1 = mysqli_query($connect, $query1);
+
+    while($row1 = @mysqli_fetch_assoc($result1))
+    {
+
+        $query2=" select o.name as nume, o.lat AS lat,o.lng AS lng,o.id_friend as id_friend,ko.status as status from friends o 
+                        join kid_friends ko on ko.id_friend=o.id_friend where ko.id_kid=".$row1['id_kid'];
+        $result2 = mysqli_query($connect, $query2);
+
+        while($row2 = @mysqli_fetch_assoc($result2))
+        {
+
+            if(calculateDistance($row1['lat'],$row1['lng'],$row2['lat'],$row2['lng'])<0.05)
+            {
+
+                if($row2['status']==0)
+                {
+                    $query3=" update kid_friend set status=1 where id_kid=".$row1['id_kid']." and id_friend=".$row2['id_friend'];
+                    $result3 = mysqli_query($connect, $query3);
+
+                    $query4="insert into notifications (message,status) values('Interactioneaza cu:".$row2['nume']."',0) ";
+                    $result4 = mysqli_query($connect, $query4);
+
+                    $query5="select max(id_notification) as id_notification from notifications";
+                    $result5 = mysqli_query($connect, $query5);
+                    $row3 = @mysqli_fetch_assoc($result5);
+
+                    $query6="insert into kid_notification (id_kid,id_notification) values(".$row1['id_kid'].",".$row3['id_notification'].") ";
+                    $result6 = mysqli_query($connect, $query6);
+                }
+            }
+            else{
+                if($row2['status']==1)
+                {
+
+                    $query7=" update kid_friend set status=0 where id_kid=".$row1['id_kid']." and id_friend=".$row2['id_friend'];
+                    $result7 = mysqli_query($connect, $query7);
+
+                }
+            }
+        }
+    }
+}
+
+
+
 function distanceUserKid($userID,$connect){
 
 $query1 = "SELECT lat,lng FROM users where id=".$userID;
@@ -75,7 +126,7 @@ $query1 = "SELECT lat,lng FROM users where id=".$userID;
 
     while($row2 = @mysqli_fetch_assoc($result2))
     {
-        if($rezultat=calculateDistance($row1['lat'],$row1['lng'],$row2['lat'],$row2['lng'])>1 )
+        if($rezultat=calculateDistance($row1['lat'],$row1['lng'],$row2['lat'],$row2['lng'])>0.6 )
         {
 
             if($row2['status']==0)
