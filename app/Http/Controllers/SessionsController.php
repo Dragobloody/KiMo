@@ -50,15 +50,28 @@ class SessionsController extends Controller
 
         $data=array('name'=>$name,'age'=>$age,'followed'=>0);
         DB::table('kids')->insert($data);
-        $kid = DB::table('kids')->where('name',$name)->where('age',$age)->value('id_kid');
-        $object= DB::table('objects')->select('id_object')->get();
-
-        $data=array('id_user'=>$userID,'id_kid'=>$kid,'status'=>0);
+        $kidID = DB::table('kids')->where('name',$name)->where('age',$age)->value('id_kid');
+        $data=array('id_user'=>$userID,'id_kid'=>$kidID,'status'=>0);
         DB::table('user_kid')->insert($data);
+
+
+        $object= DB::table('objects')->select('id_object')->get();
         foreach ($object as $obb)
         {
-            $data=array('id_kid'=>$kid,'id_object'=>$obb->id_object,'status'=>0);
+            $data=array('id_kid'=>$kidID,'id_object'=>$obb->id_object,'status'=>0);
             DB::table('kid_object')->insert($data);
+
+        }
+        $friends= DB::table('kids')
+            ->join('user_kid','user_kid.id_kid','=','kids.id_kid')
+            ->where('kids.id_kid','<>',$kidID)
+            ->where('user_kid.id_user','=',$userID)
+            ->select('kids.id_kid')
+            ->get();
+        foreach ($friends as $friend)
+        {
+            $data=array('id_kid'=>$kidID,'id_friend'=>$friend->id_kid,'status'=>0);
+            DB::table('kid_friend')->insert($data);
 
         }
 
