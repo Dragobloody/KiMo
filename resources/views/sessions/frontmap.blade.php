@@ -29,11 +29,34 @@
             }
 
 
-            setInterval(function(){
+           setInterval(function(){
                 update_kids_location();
             }, 2000);
 
         });
+
+     /*
+        $(document).ready(function(){
+
+            function update_kids_location1(view = '')
+            {
+                $.ajax({
+                    url:"updateKidsLocation1.php",
+                    method:"POST",
+                    data:{view:view,
+                        userID:{{ \Illuminate\Support\Facades\Auth::user()->id }} },
+                    dataType:"json"
+
+                });
+            }
+
+
+            setInterval(function(){
+                update_kids_location1();
+            }, 2000);
+
+        });
+        */
     </script>
 
 @endsection

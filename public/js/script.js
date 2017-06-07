@@ -164,7 +164,7 @@ $(document).ready(function () {
         var marker = new google.maps.Marker({
             map: map,
             position: point,
-            icon:"img/drg.png",
+            icon:"img/rsz_1hero.png",
             //label: icon.label
             animation: google.maps.Animation.BOUNCE
         });
@@ -214,9 +214,9 @@ $(document).ready(function () {
     function doNothing() {}
 
     deleteMarkers();
-    setInterval(deleteMarkers,2000);
+    setInterval(deleteMarkers,1000);
 
-    setInterval(searchKids,2000);
+    setInterval(searchKids,1000);
 
 });
 
