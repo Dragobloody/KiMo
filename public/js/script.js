@@ -164,7 +164,7 @@ $(document).ready(function () {
         var marker = new google.maps.Marker({
             map: map,
             position: point,
-            icon:"img/rsz_1hero.png",
+            icon:"img/drg.png",
             //label: icon.label
             animation: google.maps.Animation.BOUNCE
         });
