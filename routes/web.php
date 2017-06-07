@@ -27,6 +27,7 @@ Route::post('/editKid','SessionsController@editKid');
 Route::post('/deleteKid','SessionsController@deleteKid');
 Route::post('/editGroup','SessionsController@editGroup');
 Route::post('/deleteGroup','SessionsController@deleteGroup');
+Route::post('/deleteNotification','SessionsController@deleteNotification');
 Route::post('/start','SessionsController@start');
 Route::get('/logout','SessionsController@destroy')->name('logout');
 
@@ -46,9 +47,3 @@ Route::get('/map', 'SessionsController@start')->middleware('auth');
 Route::get('/map', function(){
     return view('sessions.frontmap');
 });
-/*
-Route::post('/searchKids', 'SearchKidsController@searchKids');
->>>>>>> Stashed changes
-
-
-*/

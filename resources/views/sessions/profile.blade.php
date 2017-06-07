@@ -242,12 +242,45 @@
                         </div>
             </div>
 
-            <div class="col-md-9 " id="notifications" style="display: none;">
-                <div class="profile-content" id="signupContainer">
+            <div  id="notifications" style="display: none;">
+                <div class="row col-md-6 col-md-offset-1 panel-body panel  panel-primary" >
 
-                    <table  class="table table-hover" >
-                        Notifications
-                    </table>
+                    <div class="table-responsive">
+
+
+                        <table id="mytable" class="table panel-table ">
+                            <h3 class="text-center">
+                                Edit Your Notifications</h3>
+
+                            <thead>
+
+                            <th>#</th>
+                            <th>Kid</th>
+                            <th>Message</th>
+                            <th>Generate Time</th>
+                            <th>Delete</th>
+                            </thead>
+
+                            <tbody>
+
+                            @foreach($notifications as $notification)
+
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $notification->name }}</td>
+                                    <td>{{ $notification->message }}</td>
+                                    <td>{{ $notification->generate_time }}</td>
+                                    <td><p data-placement="top"  title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#deleteNotification" data-id="{{ $notification->id_notification }}"><span class="glyphicon glyphicon-trash"></span></button></p></td>
+                                </tr>
+
+                            @endforeach
+
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
 
                 </div>
             </div>
@@ -370,6 +403,33 @@
     </div>
 
 
+    <div class="modal fade" id="deleteNotification" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                    <h4 class="modal-title custom_align" id="Heading">Delete this entry</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete this Record?</div>
+
+                </div>
+                <form class="form-signin" method="post" action="deleteNotification">
+                    {{csrf_field()}}
+                    <div class="modal-footer ">
+                        <input type="hidden" class="delete-id" name="notificationID"/>
+                        <button type="submit" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span> Yes</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+
 
 
     <script>
@@ -400,6 +460,16 @@
 
     <script>
         $('#deleteGroup').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var v_id = button.data('id')
+            var modal = $(this)
+            modal.find('.delete-id').val(v_id)
+        })
+
+    </script>
+
+    <script>
+        $('#deleteNotification').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget)
             var v_id = button.data('id')
             var modal = $(this)

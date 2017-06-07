@@ -14,7 +14,7 @@ class SessionsController extends Controller
     public function __construct()
     {
         $this->middleware('guest',['except'=>['destroy','index','profile','addkid','addgroup','updateProfile','maps',
-                                            'editKid','deleteKid','editGroup','deleteGroup','notifications','start']]);
+                                            'editKid','deleteKid','editGroup','deleteGroup','deleteNotification','notifications','start']]);
     }
 
     public function create()
@@ -157,12 +157,21 @@ class SessionsController extends Controller
             ->where('user_group.id_user',Auth::user()->id)
             ->select('groups.name','groups.id_group')
             ->get();
+        $notifications=DB::table('notifications')
+            ->join('kid_notification','kid_notification.id_notification','=','notifications.id_notification')
+            ->join('kids','kid_notification.id_kid','=','kids.id_kid')
+            ->join('user_kid','user_kid.id_kid','=','kids.id_kid')
+            ->where('user_kid.id_user',Auth::user()->id)
+            ->select('notifications.message','notifications.id_notification','notifications.generate_time','kids.name')
+            ->orderBy('notifications.generate_time', 'desc')
+            ->get();
         $group_kid=DB::table('group_kid')
             ->join('user_group','group_kid.id_group','=','user_group.id_group')
             ->where('user_group.id_user',Auth::user()->id)
             ->select('group_kid.id_group','group_kid.id_kid')
             ->get();
-        return view('sessions.profile')->with('user',$user)->with('kids',$kids)->with('groups',$groups)->with('group_kid',$group_kid);
+        return view('sessions.profile')->with('user',$user)->with('kids',$kids)->with('groups',$groups)
+            ->with('group_kid',$group_kid)->with('notifications',$notifications);
     }
 
     public function updateProfile()
@@ -239,6 +248,13 @@ class SessionsController extends Controller
     {
         $groupID=Input::get('groupID');
         DB::table('groups')->where('id_group', '=', $groupID)->delete();
+        return back();
+    }
+
+    public function deleteNotification()
+    {
+        $notificationID=Input::get('notificationID');
+        DB::table('notifications')->where('id_notification', '=', $notificationID)->delete();
         return back();
     }
 

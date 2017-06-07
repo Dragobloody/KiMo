@@ -3,11 +3,10 @@
 @section('content')
 
 
-    <div class="container">
-
-        <div id="map" style= "height: 500px;
+    <div >
+        <div id="map" style= "height:650px ;
                              width: 90%;
-                              margin: 0 auto;">
+                              margin: auto;">
 
 
         </div>
