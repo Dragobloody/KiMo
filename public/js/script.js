@@ -20,8 +20,6 @@ $(document).ready(function () {
         var lngval = position.coords.longitude;
 
 
-
-
         console.log([latval, lngval]);
 
         myLatLng = new google.maps.LatLng(latval, lngval);

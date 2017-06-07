@@ -48,8 +48,12 @@ class SessionsController extends Controller
         echo $userID;
         //echo $kid->id_kid;
 
-        $data=array('name'=>$name,'age'=>$age,'followed'=>0);
-        DB::table('kids')->insert($data);
+
+            $data=array('name'=>$name,'age'=>$age,'followed'=>0,'lat'=>47.17400,'lng'=>27.57515);
+            DB::table('kids')->insert($data);
+
+
+
         $kidID = DB::table('kids')->where('name',$name)->where('age',$age)->value('id_kid');
         $data=array('id_user'=>$userID,'id_kid'=>$kidID,'status'=>0);
         DB::table('user_kid')->insert($data);
@@ -71,6 +75,9 @@ class SessionsController extends Controller
         foreach ($friends as $friend)
         {
             $data=array('id_kid'=>$kidID,'id_friend'=>$friend->id_kid,'status'=>0);
+            DB::table('kid_friend')->insert($data);
+
+            $data=array('id_kid'=>$friend->id_kid,'id_friend'=>$kidID,'status'=>0);
             DB::table('kid_friend')->insert($data);
 
         }

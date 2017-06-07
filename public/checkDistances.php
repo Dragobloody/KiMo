@@ -27,7 +27,7 @@ function distanceKidObject($userID,$connect)
         while($row2 = @mysqli_fetch_assoc($result2))
         {
 
-            if(calculateDistance($row1['lat'],$row1['lng'],$row2['lat'],$row2['lng'])<0.05)
+            if(calculateDistance($row1['lat'],$row1['lng'],$row2['lat'],$row2['lng'])<0.01)
             {
 
                 if($row2['status']==0)
@@ -69,19 +69,19 @@ function distanceKidFriends($userID,$connect)
     while($row1 = @mysqli_fetch_assoc($result1))
     {
 
-        $query2=" select o.name as nume, o.lat AS lat,o.lng AS lng,o.id_friend as id_friend,ko.status as status from friends o 
-                        join kid_friends ko on ko.id_friend=o.id_friend where ko.id_kid=".$row1['id_kid'];
+        $query2=" select o.name as nume, o.lat AS lat,o.lng AS lng,o.id_kid as id_kid,ko.status as status from kids o 
+                        join kid_friend ko on ko.id_friend=o.id_kid where ko.id_kid=".$row1['id_kid']." and o.id_kid!=".$row1['id_kid'];
         $result2 = mysqli_query($connect, $query2);
 
         while($row2 = @mysqli_fetch_assoc($result2))
         {
 
-            if(calculateDistance($row1['lat'],$row1['lng'],$row2['lat'],$row2['lng'])<0.05)
+            if(calculateDistance($row1['lat'],$row1['lng'],$row2['lat'],$row2['lng'])<0.01)
             {
 
                 if($row2['status']==0)
                 {
-                    $query3=" update kid_friend set status=1 where id_kid=".$row1['id_kid']." and id_friend=".$row2['id_friend'];
+                    $query3=" update kid_friend set status=1 where id_kid=".$row1['id_kid']." and id_friend=".$row2['id_kid'];
                     $result3 = mysqli_query($connect, $query3);
 
                     $query4="insert into notifications (message,status) values('Interactioneaza cu:".$row2['nume']."',0) ";
@@ -99,7 +99,7 @@ function distanceKidFriends($userID,$connect)
                 if($row2['status']==1)
                 {
 
-                    $query7=" update kid_friend set status=0 where id_kid=".$row1['id_kid']." and id_friend=".$row2['id_friend'];
+                    $query7=" update kid_friend set status=0 where id_kid=".$row1['id_kid']." and id_friend=".$row2['id_kid'];
                     $result7 = mysqli_query($connect, $query7);
 
                 }
